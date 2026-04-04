@@ -1,0 +1,6 @@
+REPORTE DE RECURSOS - PROYECTO FUTURO
+--------------------------------------
+Instancias EC2 Activas: 1 (t3.micro)
+Buckets S3 detectados: 1 (proyecto-futuro-storage)
+Estado del Sistema: Operativo
+Fecha: 03/04/2026
