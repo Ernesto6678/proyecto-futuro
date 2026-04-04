@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Infraestructura básica para Soluciones Tecnológicas del Futuro
+
+Resources:
+  ServidorWeb:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-0c101f26f147fa7fd
+      Tags:
+        - Key: Name
+          Value: ServidorFinanciero
+
+  BucketDatos:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Sub "datos-financieros-ernesto-${AWS::AccountId}"

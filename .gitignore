@@ -1,0 +1,7 @@
+.aws/
+.voc/
+.voc_credentials
+.voc_api.json
+*.pem
+backup.log
+__pycache__/
