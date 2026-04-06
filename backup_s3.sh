@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script de limpieza para Soluciones Tecnológicas del Futuro
+# Script de proyecto AWS
 
 LOG_DIR="/var/log/myapp"
 echo "Iniciando limpieza de logs: $(date)" >> /home/ec2-user/mantenimiento.log
