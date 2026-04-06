@@ -1,11 +1,21 @@
 #!/bin/bash
-# Script de proyecto AWS
 
-LOG_DIR="/var/log/myapp"
-echo "Iniciando limpieza de logs: $(date)" >> /home/ec2-user/mantenimiento.log
+BUCKET_NAME="bucket-ernesto-1775268115" 
+SOURCE_DIR="$HOME/respaldo_prueba"
+BACKUP_FILE="backup_$(date +%F_%H-%M-%S).tar.gz"
 
-# Borrar logs de más de 7 días
-find $LOG_DIR -name "*.log" -type f -mtime +7 -delete
+echo "--- Iniciando proceso de respaldo para Ernesto ---"
 
-# Programar en cron (ejecutar cada domingo a media noche)
-# (crontab -l ; echo "0 0 * * 0 /home/ec2-user/mantenimiento.sh") | crontab -
+tar -czf "$BACKUP_FILE" -C "$SOURCE_DIR" .
+echo "Archivo comprimido creado: $BACKUP_FILE"
+
+aws s3 cp "$BACKUP_FILE" "s3://$BUCKET_NAME/"
+
+if [ $? -eq 0 ]; then
+    echo "¡Respaldo subido exitosamente a la nube de AWS!"
+    rm -f "$BACKUP_FILE"
+else
+    echo "Error: No se pudo completar la subida a S3."
+fi
+
+echo "--- Proceso finalizado correctamente ---"
